@@ -25,6 +25,7 @@ class TreeNode:
     def remove_child(self, index):
         del self.children[index]
 
+
 class Tree:
     """class implementing a program tree for brainfuck"""
     def __init__(self, stream):
