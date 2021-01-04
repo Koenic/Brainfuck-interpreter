@@ -24,7 +24,6 @@ class SymbolStream():
         self.brainfuck_code = str(brainfuck_code)
         self.index = 0
         self.comment = ""
-        print(self.brainfuck_code)
 
     def next(self):
         """returns the next brainfuck symbol"""

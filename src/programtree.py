@@ -1,5 +1,5 @@
 """Converts a brainfuck symbol stream to a program tree"""
-from symbol import Symbol, SymbolStream
+from src.symbol import Symbol, SymbolStream
 from enum import Enum
 
 class Action(Enum):
@@ -28,10 +28,10 @@ class TreeNode:
 
 class Tree:
     """class implementing a program tree for brainfuck"""
-    def __init__(self, stream):
+    def __init__(self, input_string):
         self.root = TreeNode(Action.PROGRAM_ROOT)
         self.current_node = self.root
-        self.build_tree(stream)
+        self.run_program(input_string)
 
     def tree_builder(self, symbol):
         """builds the program tree by interpreting the symbols as one of 5 actions"""
@@ -93,11 +93,9 @@ class Tree:
         node.visitcount += 1
         return pointer_index
 
-    def run_program(self):
+    def run_program(self, input_string):
+        """"runs the code in input string"""
+        self.build_tree(SymbolStream(input_string))
         pointer_index = 0
         memory = []
         self.run_node(self.root, memory, pointer_index)
-
-
-programtree = Tree(SymbolStream(input()))
-programtree.run_program()
